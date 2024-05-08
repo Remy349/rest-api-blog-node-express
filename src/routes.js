@@ -20,7 +20,7 @@ router.get("/categories/:id", (req, res) => {
   const category = CATEGORIES.find((item) => item.id === Number(categoryId));
 
   if (!category) {
-    res.json({ message: "Category not found" });
+    res.status(404).json({ message: "Category not found" });
   }
 
   res.json(category);
@@ -39,7 +39,7 @@ router.post("/categories", (req, res) => {
 
   CATEGORIES.push(newCategory);
 
-  res.json({ message: "Category successfully created" });
+  res.status(201).json({ message: "Category successfully created" });
 });
 
 router.put("/categories/:id", (req, res) => {
@@ -51,7 +51,15 @@ router.put("/categories/:id", (req, res) => {
 router.delete("/categories/:id", (req, res) => {
   const categoryId = req.params.id;
 
-  res.send(`Delete category by ID: ${categoryId}`);
+  const category = CATEGORIES.find((item) => item.id === Number(categoryId));
+
+  if (!category) {
+    res.status(404).json({ message: "Category not found" });
+  }
+
+  CATEGORIES.filter((item) => item.id !== category.id);
+
+  res.status(204);
 });
 
 module.exports = router;
