@@ -12,10 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "4.19.2"
   },
   "devDependencies": {
-    "morgan": "^1.10.0",
-    "nodemon": "^3.1.0"
+    "morgan": "1.10.0",
+    "nodemon": "3.1.0",
+    "prettier": "3.2.5",
+    "standard": "17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }
