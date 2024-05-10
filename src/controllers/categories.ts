@@ -1,7 +1,5 @@
-import { CategoriesModel } from '../models/local/categories.js'
-
 export class CategoriesController {
-  static async getAll(_req, res) {
+  static async getAll(req, res) {
     const categories = await CategoriesModel.getAll()
 
     return res.json(categories)
