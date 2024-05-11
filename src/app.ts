@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 import express from 'express'
 import morgan from 'morgan'
 import { categoriesRouter } from './routes/categories'
