@@ -1,39 +1,38 @@
+import { Request, Response } from 'express'
+
 export class CategoriesController {
-  static async getAll(req, res) {
-    const categories = await CategoriesModel.getAll()
-
-    return res.json(categories)
-  }
-
-  static async getById(req, res) {
-    const { id } = req.params
-
-    const category = await CategoriesModel.getById(id)
-
-    if (!category) {
-      return res.status(404).json({ message: 'Category not found' })
+  static async getAll(req: Request, res: Response) {
+    try {
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' })
     }
-
-    return res.json(category)
   }
 
-  static async create(req, res) {
-    const data = req.body
-
-    const newCategory = await CategoriesModel.create(data)
-
-    return res.status(201).json(newCategory)
-  }
-
-  static async delete(req, res) {
-    const { id } = req.params
-
-    const result = await CategoriesModel.delete(id)
-
-    if (result === false) {
-      return res.status(404).json({ message: 'Category not found' })
+  static async getById(req: Request, res: Response) {
+    try {
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' })
     }
+  }
 
-    return res.json({ message: 'Category successfully deleted' })
+  static async create(req: Request, res: Response) {
+    try {
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' })
+    }
+  }
+
+  static async update(req: Request, res: Response) {
+    try {
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' })
+    }
+  }
+
+  static async delete(req: Request, res: Response) {
+    try {
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' })
+    }
   }
 }
