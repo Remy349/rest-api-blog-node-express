@@ -12,7 +12,32 @@ export class CategoriesModel {
   }
 
   static async create(data: { name: string }) {
+    const isAlreadyCreated = await prisma.category.findFirst({
+      where: { name: data.name }
+    })
+
+    if (isAlreadyCreated) return true
+
     return await prisma.category.create({
+      data: { name: data.name }
+    })
+  }
+
+  static async update(id: string, data: { name: string }) {
+    const category = await prisma.category.findFirst({
+      where: { id }
+    })
+
+    if (category?.name !== data.name) {
+      const isAlreadyCreated = await prisma.category.findFirst({
+        where: { name: data.name }
+      })
+
+      if (isAlreadyCreated) return true
+    }
+
+    return await prisma.category.update({
+      where: { id },
       data: { name: data.name }
     })
   }

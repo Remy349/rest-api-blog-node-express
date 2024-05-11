@@ -34,6 +34,10 @@ export class CategoriesController {
 
       const newCategory = await CategoriesModel.create(data)
 
+      if (newCategory === true) {
+        return res.status(409).json({ message: 'Category already created' })
+      }
+
       res.status(201).json(newCategory)
     } catch (error) {
       res.status(500).json({ message: 'Internal server error' })
@@ -42,6 +46,17 @@ export class CategoriesController {
 
   static async update(req: Request, res: Response) {
     try {
+      const { id } = req.params
+
+      const data: { name: string } = req.body
+
+      const updatedCategory = await CategoriesModel.update(id, data)
+
+      if (updatedCategory === true) {
+        return res.status(409).json({ message: 'Category already created' })
+      }
+
+      res.json(updatedCategory)
     } catch (error) {
       res.status(500).json({ message: 'Internal server error' })
     }
