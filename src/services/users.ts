@@ -1,8 +1,8 @@
 import { prisma } from '../lib/prisma'
 
-export class PostsService {
+export class UsersService {
   static async getById(id: string) {
-    return await prisma.post.findFirst({
+    return await prisma.user.findFirst({
       where: { id }
     })
   }
