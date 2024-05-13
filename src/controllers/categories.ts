@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
-import { CategoriesModel } from '../models/categories'
+import { CategoriesService } from '../services/categories'
 
 export class CategoriesController {
   static async getAll(_req: Request, res: Response) {
     try {
-      const categories = await CategoriesModel.getAll()
+      const categories = await CategoriesService.getAll()
 
       res.json(categories)
     } catch (error) {
@@ -16,7 +16,7 @@ export class CategoriesController {
     try {
       const { id } = req.params
 
-      const category = await CategoriesModel.getById(id)
+      const category = await CategoriesService.getById(id)
 
       if (!category) {
         return res.status(404).json({ message: 'Category not found' })
@@ -32,7 +32,7 @@ export class CategoriesController {
     try {
       const data: { name: string } = req.body
 
-      const newCategory = await CategoriesModel.create(data)
+      const newCategory = await CategoriesService.create(data)
 
       if (newCategory === true) {
         return res.status(409).json({ message: 'Category already created' })
@@ -50,7 +50,7 @@ export class CategoriesController {
 
       const data: { name: string } = req.body
 
-      const updatedCategory = await CategoriesModel.update(id, data)
+      const updatedCategory = await CategoriesService.update(id, data)
 
       if (updatedCategory === true) {
         return res.status(409).json({ message: 'Category already created' })
@@ -66,7 +66,7 @@ export class CategoriesController {
     try {
       const { id } = req.params
 
-      const deletedCategory = await CategoriesModel.delete(id)
+      const deletedCategory = await CategoriesService.delete(id)
 
       if (!deletedCategory) {
         return res.status(404).json({ message: 'Category not found' })

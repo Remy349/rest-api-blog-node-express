@@ -1,6 +1,6 @@
 import { prisma } from '../lib/prisma'
 
-export class CategoriesModel {
+export class CategoriesService {
   static async getAll() {
     return await prisma.category.findMany()
   }
