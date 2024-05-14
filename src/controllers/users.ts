@@ -17,4 +17,21 @@ export class UsersController {
       res.status(500).json({ message: 'Internal server error' })
     }
   }
+
+  static async create(req: Request, res: Response) {
+    try {
+      const data: { username: string; email: string; password: string } =
+        req.body
+
+      const newUser = await UsersService.create(data)
+
+      if (newUser === true) {
+        return res.status(409).json({ message: 'User already created' })
+      }
+
+      res.status(201).json({ message: 'User successfully created' })
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' })
+    }
+  }
 }
