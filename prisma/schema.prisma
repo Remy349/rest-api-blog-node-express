@@ -25,6 +25,8 @@ model User {
   password  String   @db.VarChar(200)
   role      Role     @default(USER)
   createdAt DateTime @default(now())
+
+  posts Post[]
 }
 
 model Category {
@@ -46,4 +48,7 @@ model Post {
 
   categoryId String
   category   Category @relation(fields: [categoryId], references: [id])
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 }

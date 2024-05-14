@@ -6,4 +6,6 @@ export class PostsService {
       where: { id }
     })
   }
+  
+  static async create() {}
 }
