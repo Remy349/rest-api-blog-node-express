@@ -2,6 +2,10 @@ import { prisma } from '../lib/prisma'
 import bcrypt from 'bcrypt'
 
 export class UsersService {
+  static async getAll() {
+    return await prisma.user.findMany()
+  }
+
   static async getById(id: string) {
     return await prisma.user.findFirst({
       where: { id }

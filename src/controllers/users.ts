@@ -2,6 +2,16 @@ import { Request, Response } from 'express'
 import { UsersService } from '../services/users'
 
 export class UsersController {
+  static async getAll(_req: Request, res: Response) {
+    try {
+      const users = await UsersService.getAll()
+
+      res.json(users)
+    } catch (error) {
+      res.status(500).json({ message: 'Internal error server' })
+    }
+  }
+
   static async getById(req: Request, res: Response) {
     try {
       const { id } = req.params
