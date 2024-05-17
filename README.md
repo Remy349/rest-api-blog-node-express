@@ -1,1 +1,1 @@
-# Rest API built with Node and ExpressJS
+# Rest API developed with Express and Node + TypeScript
